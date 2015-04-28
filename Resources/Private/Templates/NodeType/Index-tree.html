@@ -1,0 +1,97 @@
+<f:layout name="BackendSubModule" />
+
+<f:section name="content">
+
+	<div id="tree">
+		<ul id="treeData" style="display: none;">
+			<f:for each="{nodeTypesFullConfiguration}" as="nodeTypeFullConfiguration" key="nodeTypeKey" iteration="nodeTypeIteration">
+				<li id="node-{nodeTypeIteration.cycle}" title="{nodeTypeFullConfiguration.ui.label} [ {nodeTypeKey} ]">
+					{nodeTypeFullConfiguration.ui.label} [ {nodeTypeKey} ] {nodeTypeFullConfiguration.final} {f:if(condition: nodeTypeFullConfiguration.abstract, then: 'abstract: true ', else: 'abstract: false ')}
+					<ul>
+						<f:if condition="{nodeTypeFullConfiguration.properties}">
+							<li id="node-{nodeTypeIteration.cycle}-properties">Properties
+								<ul>
+									<f:for each="{nodeTypeFullConfiguration.properties}" as="property" key="propertyKey" iteration="iteration">
+										<li id="node-{nodeTypeIteration.cycle}-properties-{iteration.cycle}">
+											{propertyKey} - Type: {property.type}
+										</li>
+									</f:for>
+								</ul>
+							</li>
+						</f:if>
+
+						<f:if condition="{nodeTypeFullConfiguration.ui}">
+							<li id="node-{nodeTypeIteration.cycle}-ui">UI
+								<ul>
+									<f:for each="{nodeTypeFullConfiguration.ui}" as="ui" key="uiKey" iteration="iteration">
+										<li id="node-{nodeTypeIteration.cycle}-ui-{iteration.cycle}">
+											{uiKey}
+										</li>
+									</f:for>
+								</ul>
+							</li>
+						</f:if>
+
+						<f:if condition="{nodeTypeFullConfiguration.postprocessors}">
+							<ul>
+								<li id="node-{nodeTypeIteration.cycle}-postprocessors">Postprocessor
+									<ul>
+										<f:for each="{nodeTypeFullConfiguration.postprocessors}" as="postprocessor" key="postprocessorKey" iteration="iteration">
+											<li id="node-{nodeTypeIteration.cycle}-postprocessors-{iteration.cycle}">
+												{propertyKey}
+											</li>
+										</f:for>
+									</ul>
+								</li>
+							</ul>
+						</f:if>
+
+						<f:if condition="{nodeTypeFullConfiguration.childNodes}">
+							<li id="node-{nodeTypeIteration.cycle}-childNodes">ChildNodes
+								<ul>
+									<f:for each="{nodeTypeFullConfiguration.childNodes}" as="childNode" key="childNodeKey" iteration="iteration">
+										<li id="node-{nodeTypeIteration.cycle}-childNodes-{iteration.cycle}">
+											{childNodeKey}
+										</li>
+									</f:for>
+								</ul>
+							</li>
+						</f:if>
+
+						<f:if condition="{nodeTypeFullConfiguration.superTypes}">
+							<li id="node-{nodeTypeIteration.cycle}-superTypes">SuperTypes
+								<ul>
+									<f:for each="{nodeTypeFullConfiguration.superTypes}" as="superType" key="superTypeKey" iteration="iteration">
+										<li id="node-{nodeTypeIteration.cycle}-superTypes-{iteration.cycle}">
+											{superTypeKey}
+										</li>
+									</f:for>
+								</ul>
+							</li>
+						</f:if>
+					</ul>
+				</li>
+			</f:for>
+		</ul>
+	</div>
+
+	<f:for each="{nodeTypesFullConfiguration}" as="nodeTypeFullConfiguration" key="nodeTypeKey">
+		<table class="doctable" border="1" cellspacing="0" cellpadding="0">
+			<tr class="header">
+				<td colspan="2">{nodeTypeFullConfiguration.ui.label} [ {nodeTypeKey} ]</td>
+			</tr>
+			<f:if condition="{nodeTypeFullConfiguration.properties}">
+				<tr class="subheader">
+					<td colspan="2">Properties</td>
+				</tr>
+				<f:for each="{nodeTypeFullConfiguration.properties}" as="property" key="propertyKey" iteration="iteration">
+					<tr class="{f:if(condition: iteration.isEven, then: 'even')}">
+						<td class="label"><span class="argument name">{propertyKey}</span></td>
+						<td><span class="argument description"><f:debug>{property}</f:debug></span></td>
+					</tr>
+				</f:for>
+			</f:if>
+		</table>
+	</f:for>
+
+</f:section>

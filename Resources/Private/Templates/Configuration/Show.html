@@ -1,0 +1,31 @@
+<f:layout name="BackendSubModule" />
+
+<f:section name="content">
+		<f:for each="{availableConfigurationTypes}" as="availableConfigurationType">
+			<f:link.action action="index" arguments="{type: availableConfigurationType}" class="neos-button" title="{availableConfigurationType}">
+				{availableConfigurationType}
+			</f:link.action>
+		</f:for>
+		<f:if condition="{type}">
+			<f:then>
+				<f:if condition="{configuration}">
+					<f:then>
+						<p>
+							<b>Configuration "{typeAndPath}":</b>
+						</p>
+						<pre class="brush: yaml;">{yaml}</pre>
+					</f:then>
+					<f:else>
+						<p>
+							<b>Configuration "{typeAndPath}" was empty!</b>
+						</p>
+					</f:else>
+				</f:if>
+			</f:then>
+			<f:else>
+				<p>
+					Type is not set...
+				</p>
+			</f:else>
+		</f:if>
+</f:section>

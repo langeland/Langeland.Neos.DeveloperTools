@@ -1,0 +1,94 @@
+<f:layout name="BackendSubModule" />
+
+<f:section name="content">
+
+	<div id="tree">
+		<ul id="treeData" style="xdisplay: none;">
+			<f:for each="{nodeTypesFullConfiguration}" as="nodeTypeFullConfiguration" key="nodeTypeKey" iteration="nodeTypeIteration">
+				<li id="node-{nodeTypeIteration.cycle}" title="{nodeTypeFullConfiguration.ui.label} [ {nodeTypeKey} ]">
+					{nodeTypeFullConfiguration.ui.label} [ {nodeTypeKey} ]
+
+					<f:if condition="{nodeTypeFullConfiguration.properties}">
+						<ul>
+							<li id="node-{nodeTypeIteration.cycle}-properties">Properties
+								<ul>
+									<f:for each="{nodeTypeFullConfiguration.properties}" as="property" key="propertyKey" iteration="iteration">
+										<li id="node-{nodeTypeIteration.cycle}-properties-{iteration.cycle}">
+											{propertyKey}
+										</li>
+									</f:for>
+								</ul>
+							</li>
+						</ul>
+					</f:if>
+
+					<f:if condition="{nodeTypeFullConfiguration.ui}">
+						<ul>
+							<li id="node-{nodeTypeIteration.cycle}-ui">UI
+								<ul>
+									<f:for each="{nodeTypeFullConfiguration.ui}" as="ui" key="uiKey" iteration="iteration">
+										<li id="node-{nodeTypeIteration.cycle}-ui-{iteration.cycle}">
+											{uiKey}
+										</li>
+									</f:for>
+								</ul>
+							</li>
+						</ul>
+					</f:if>
+
+
+					<f:comment>
+					<f:if condition="{nodeTypeFullConfiguration.postprocessors}">
+						<ul>
+							<li id="node-{nodeTypeIteration.cycle}-postprocessors">Postprocessor
+								<ul>
+									<f:for each="{nodeTypeFullConfiguration.postprocessors}" as="postprocessor" key="postprocessorKey" iteration="iteration">
+										<li id="node-{nodeTypeIteration.cycle}-postprocessors-{iteration.cycle}">
+											{propertyKey}
+										</li>
+									</f:for>
+								</ul>
+							</li>
+						</ul>
+					</f:if>
+
+					<f:if condition="{nodeTypeFullConfiguration.childNodes}">
+						<ul>
+							<li id="node-{nodeTypeIteration.cycle}-childNodes">ChildNodes
+								<ul>
+									<f:for each="{nodeTypeFullConfiguration.childNodes}" as="childNode" key="childNodeKey" iteration="iteration">
+										<li id="node-{nodeTypeIteration.cycle}-childNodes-{iteration.cycle}">
+											{childNodeKey}
+										</li>
+									</f:for>
+								</ul>
+							</li>
+						</ul>
+					</f:if>
+
+					<f:if condition="{nodeTypeFullConfiguration.superTypes}">
+						<ul>
+							<li id="node-{nodeTypeIteration.cycle}-superTypes">SuperTypes
+								<ul>
+									<f:for each="{nodeTypeFullConfiguration.superTypes}" as="superType" key="superTypeKey" iteration="iteration">
+										<li id="node-{nodeTypeIteration.cycle}-superTypes-{iteration.cycle}">
+											{superTypeKey}
+										</li>
+									</f:for>
+								</ul>
+							</li>
+						</ul>
+					</f:if>
+					</f:comment>
+
+
+
+				</li>
+			</f:for>
+		</ul>
+	</div>
+
+	<f:debug title="nodeTypesFullConfiguration">{nodeTypesFullConfiguration}</f:debug>
+	<f:for each="{nodeTypesFullConfiguration}" as="nodeTypeFullConfiguration" key="nodeTypeKey">
+	</f:for>
+</f:section>

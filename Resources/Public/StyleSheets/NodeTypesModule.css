@@ -1,0 +1,63 @@
+@CHARSET "UTF-8";
+/*
+ * Red: #af1f29		#99011E
+ * Orange: #f07d22	#F58006
+ * Gray: #e7e7e8
+ */
+
+#typo3-inner-docbody {
+}
+
+ol, ul {
+	list-style: disc inside none;
+}
+
+.doctable {
+	border-collapse: collapse;
+	width: 700px;
+	margin-bottom: 20px;
+	color: #000000;
+	width: 100%;
+}
+
+.doctable tr td {
+	padding: 2px 4px;
+	background-color: #ffffff;
+}
+
+.doctable tr td.label {
+	width: 150px;
+}
+
+.doctable tr.header td {
+	padding: 7px;
+	background-color: #af1f29;
+	color: #ffffff;
+	font-size: 17px;
+}
+
+.doctable tr.subheader td {
+	background-color: #f07d22 !important;
+	font-weight: bold;
+}
+
+
+.doctable tr.even td {
+	background-color: #e7e7e8;
+}
+
+
+
+.argument.name {
+
+}
+
+.argument.description {
+	font-weight: bold;
+}
+
+
+
+.highlight {
+	background-color: yellow;
+}

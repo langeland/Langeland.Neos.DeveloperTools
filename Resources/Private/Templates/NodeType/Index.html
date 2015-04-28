@@ -1,0 +1,70 @@
+<f:layout name="BackendSubModule" />
+
+<f:section name="content">
+	<div class="neos-row-fluid">
+		<legend>Available NodeTypes</legend>
+		<br>
+		<table class="neos-table">
+			<thead>
+			<tr>
+				<th class="check">
+					<label for="check-all" class="neos-checkbox">
+						<input type="checkbox" id="check-all"><span></span>
+					</label>
+				</th>
+				<th>Label</th>
+				<th>NodeType</th>
+				<th>Group</th>
+				<th>Inline editable</th>
+				<th>&nbsp;</th>
+			</tr>
+			</thead>
+			<tbody>
+			<f:for each="{nodeTypesGroups}" as="nodeTypesGroup" key="group">
+				<tr class="neos-folder">
+					<td colspan="2" class="neos-priority1">
+						<strong>{nodeTypesGroup.name}</strong>
+					</td>
+					<td class="neos-priority2">&nbsp;</td>
+					<td class="neos-priority2">&nbsp;</td>
+					<td class="neos-priority2">&nbsp;</td>
+					<td class="neos-priority1 neos-aRight">
+						<i class="fold-toggle icon-chevron-up icon-white" data-toggle="fold-{group}"></i>
+					</td>
+				</tr>
+				<f:for each="{nodeTypesGroup.nodeTypes}" as="nodeType">
+					<tr class="fold-{group}" title="{nodeType.name}">
+						<td class="check neos-priority1">
+							<label for="{nodeType.name}" class="neos-checkbox">
+								<input id="{nodeType.name}" type="checkbox" name="moduleArguments[nodeTypeName][]" value="{nodeType.name}"><span></span>
+							</label>
+						</td>
+						<td class="nodetype-label neos-priority1">
+							{nodeType.label}
+						</td>
+						<td class="nodetype-name neos-priority1">
+							{nodeType.name}
+						</td>
+						<td class="nodetype-group neos-priority1">
+							{nodeType.ui.group}
+						</td>
+						<td class="nodetype-label neos-priority1">
+							<f:if condition="{nodeType.ui.inlineEditable}">
+								<i class="icon-check icon-white"></i>
+							</f:if>
+						</td>
+						<td class="neos-action neos-priority1">
+							<f:link.action action="show" arguments="{nodeTypeName: nodeType.name}" class="neos-button neos-button-primary" title="{nodeTypeName}">
+								<i class="icon-info-sign icon-white"></i>
+							</f:link.action>
+						</td>
+					</tr>
+				</f:for>
+			</f:for>
+			</tbody>
+
+		</table>
+	</div>
+
+
+</f:section>

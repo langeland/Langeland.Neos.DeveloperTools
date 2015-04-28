@@ -1,0 +1,18 @@
+#                                                                        #
+# Security policy for the TYPO3 Neos package                             #
+#                                                                        #
+
+resources:
+  methods:
+    Langeland_Neos_DeveloperTools_Backend_Module_DeveloperTools: 'method(Langeland\Neos\DeveloperTools\Controller\DeveloperToolsController->indexAction())'
+    Langeland_Neos_DeveloperTools_Backend_Module_Configuration: 'method(Langeland\Neos\DeveloperTools\Controller\ConfigurationController->indexAction())'
+    Langeland_Neos_DeveloperTools_Backend_Module_NodeType: 'method(Langeland\Neos\DeveloperTools\Controller\NodeTypeController->(index|show)Action())'
+    Langeland_Neos_DeveloperTools_Backend_Module_Style: 'method(Langeland\Neos\DeveloperTools\Controller\StyleController->indexAction())'
+
+acls:
+  Everybody:
+    methods:
+      Langeland_Neos_DeveloperTools_Backend_Module_DeveloperTools: GRANT
+      Langeland_Neos_DeveloperTools_Backend_Module_Configuration: GRANT
+      Langeland_Neos_DeveloperTools_Backend_Module_NodeType: GRANT
+      Langeland_Neos_DeveloperTools_Backend_Module_Style: GRANT
