@@ -1,84 +1,205 @@
 <f:layout name="BackendSubModule" />
 
 <f:section name="content">
-	<div class="neos-row-fluid neos-module-container">
-		<div class="neos-span5">
-			<legend>User Data</legend>
-
-			<table class="neos-info-table">
-				<tbody>
-				<tr>
-					<th>Username</th>
-					<td>{account.accountIdentifier}</td>
-				</tr>
-				<tr>
-					<th>Alias</th>
-					<td>{account.party.name.alias}</td>
-				</tr>
-				<tr>
-					<th>Creation date</th>
-					<td><f:format.date format="d.m.Y - H:i:s">{account.creationDate}</f:format.date></td>
-				</tr>
-				<f:if condition="{account.roles}">
-					<tr>
-						<th>Roles</th>
-						<td><f:render partial="Module/Shared/Roles" arguments="{roles: account.roles}" /></td>
-					</tr>
-				</f:if>
-				</tbody>
-			</table>
-		</div>
-		<div class="neos-span5 neos-offset1">
-			<legend>Personal Data</legend>
-
-			<table class="neos-info-table">
-				<tbody>
-				<f:if condition="{account.party.name.title}">
-					<tr>
-						<th>Title</th>
-						<td>{account.party.name.title}</td>
-					</tr>
-				</f:if>
-				<f:if condition="{account.party.name.firstName}">
-					<tr>
-						<th>First Name</th>
-						<td>{account.party.name.firstName}</td>
-					</tr>
-				</f:if>
-				<f:if condition="{account.party.name.MiddleName}">
-					<tr>
-						<th>Middle Name</th>
-						<td>{account.party.name.middleName}</td>
-					</tr>
-				</f:if>
-				<f:if condition="{account.party.name.lastName}">
-					<tr>
-						<th>Last Name</th>
-						<td>{account.party.name.lastName}</td>
-					</tr>
-				</f:if>
-				<f:if condition="{account.party.name.otherName}">
-					<tr>
-						<th>Other Name</th>
-						<td>{account.party.name.otherName}</td>
-					</tr>
-				</f:if>
-				</tbody>
-			</table>
-		</div>
-	</div>
-
 	<div class="neos-row-fluid">
-		<legend>Show: {nodeTypeName}</legend>
+		<f:comment>
+			<f:debug>{nodeType}</f:debug>
+		</f:comment>
+
+		<h2>Details for notetype: {nodeType.name}</h2>
+
+		<div class="neos-row-fluid neos-module-container">
+			<div class="neos-span11">
+				<a class="neos-button neos-button-primary" title="General" href="#">General</a>
+				<a class="neos-button" title="Extended" href="#">Extended</a>
+				<a class="neos-button" title="Properties" href="#">Properties</a>
+				<a class="neos-button" title="Configuration (3 errors found)" href="#">Configuration (3 errors found)</a>
+				<a class="neos-button" title="TypoScript prototype" href="#">TypoScript prototype</a>
+			</div>
+		</div>
+
+
+		<legend>General</legend>
+		<div class="neos-row-fluid neos-module-container">
+			<div class="neos-span5">
+				<legend>General</legend>
+
+				<table class="neos-info-table">
+					<tbody>
+					<tr>
+						<th>Label</th>
+						<td>{label}</td>
+					</tr>
+					<tr>
+						<th>Icon</th>
+						<td>
+							<i class="{icon} neos-pull-left"></i>
+						</td>
+					</tr>
+					<tr>
+						<th>Inline editable</th>
+						<td>
+							<f:if condition="{nodeType.inlineEditable}">
+								<i class="icon-check icon-white"></i>
+							</f:if>
+						</td>
+					</tr>
+					<tr>
+						<th>Group</th>
+						<td>{group}</td>
+					</tr>
+					<tr>
+						<th>Position</th>
+						<td>{nodeType.ui.position}</td>
+					</tr>
+
+					</tbody>
+				</table>
+
+
+				<legend>Super types</legend>
+				<table class="neos-table">
+					<thead>
+					<tr>
+						<th colspan="2">Name</th>
+					</tr>
+					</thead>
+					<tbody>
+					<f:for each="{superTypes}" key="superTypeName" as="superType">
+						<tr>
+							<td>
+								<i class="{superType.icon} icon-white"></i>
+								{superType.shortName} ({superType.name})
+							</td>
+							<td class="neos-action neos-priority1">
+								<f:link.action action="show" arguments="{nodeTypeName: superType.name}" class="neos-button neos-button-primary neos-pull-right" title="{superType.name}">
+									<i class="icon-info-sign icon-white"></i>
+								</f:link.action>
+							</td>
+						</tr>
+					</f:for>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="neos-span5 neos-offset1">
+				<legend>Inspector</legend>
+				<table class="neos-table">
+					<thead>
+					<tr>
+						<th>Label</th>
+						<th>Name</th>
+						<th>Position</th>
+					</tr>
+					</thead>
+					<tbody>
+					<f:for each="{nodeType.ui.inspector}" key="inspectorKey" as="inspector">
+
+						<f:for each="{inspector}" key="inspectorItemName" as="inspectorItem">
+							<tr>
+								<td>
+									<f:if condition="{inspectorItem.icon}">
+										<i class="{inspectorItem.icon} icon-white"></i>
+									</f:if>
+									{inspectorItem.label} ({inspectorKey})
+								</td>
+								<td>{inspectorItemName}</td>
+								<td>{inspectorItem.position}</td>
+							</tr>
+						</f:for>
+					</f:for>
+					</tbody>
+				</table>
+
+
+				<legend>Child types</legend>
+				<table class="neos-table">
+					<thead>
+					<tr>
+						<th colspan="2">Name</th>
+					</tr>
+					</thead>
+					<tbody>
+					<f:for each="{chidrenTypes}" key="chidrenTypeName" as="chidrenType">
+						<tr>
+							<td>
+								<i class="{chidrenType.icon} icon-white"></i>
+								{chidrenType.shortName} ({chidrenType.name})
+							</td>
+							<td class="neos-action neos-priority1">
+								<f:link.action action="show" arguments="{nodeTypeName: chidrenType.name}" class="neos-button neos-button-primary neos-pull-right" title="{chidrenType.name}">
+									<i class="icon-info-sign icon-white"></i>
+								</f:link.action>
+							</td>
+						</tr>
+					</f:for>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+		<hr />
+
+
+		<legend>Extended</legend>
+		<div class="neos-row-fluid neos-module-container">
+			<div class="neos-span11">
+				<legend>Auto created child nodes</legend>
+				<legend>Constraints</legend>
+				<legend>Post processors</legend>
+			</div>
+		</div>
+		<hr />
+
+
+		<legend>Properties</legend>
+		<div class="neos-row-fluid neos-module-container">
+			<div class="neos-span11">
+				<legend>General</legend>
+				<legend>Super types</legend>
+			</div>
+		</div>
+		<hr />
+
+
+		<legend>Configuration (3 errors found)</legend>
+		<div class="neos-row-fluid neos-module-container">
+			<div class="neos-span5">
+				<legend>General</legend>
+				<legend>Super types</legend>
+
+			</div>
+			<div class="neos-span5 neos-offset1">
+				<legend>Inspector</legend>
+				<legend>Child types</legend>
+			</div>
+		</div>
+		<hr />
+
+
+		<legend>TypoScript prototype</legend>
+		<div class="neos-row-fluid neos-module-container">
+			<div class="neos-span5">
+				<legend>General</legend>
+				<legend>Super types</legend>
+
+			</div>
+			<div class="neos-span5 neos-offset1">
+				<legend>Inspector</legend>
+				<legend>Child types</legend>
+			</div>
+		</div>
+		<hr />
+
+
+		<legend>Extended</legend>
 		<br>
-<f:debug>{node}</f:debug>
-
-
-
-
-
-
-
+		<legend>Properties</legend>
+		<br>
+		<legend>Configuration (3 errors found)</legend>
+		<br>
+		<legend>TypoScript prototype</legend>
+		<br>
 
 	</div>
 

@@ -7,10 +7,7 @@
 		<table class="neos-table">
 			<thead>
 			<tr>
-				<th class="check">
-					<label for="check-all" class="neos-checkbox">
-						<input type="checkbox" id="check-all"><span></span>
-					</label>
+				<th>
 				</th>
 				<th>Label</th>
 				<th>NodeType</th>
@@ -34,27 +31,25 @@
 				</tr>
 				<f:for each="{nodeTypesGroup.nodeTypes}" as="nodeType">
 					<tr class="fold-{group}" title="{nodeType.name}">
-						<td class="check neos-priority1">
-							<label for="{nodeType.name}" class="neos-checkbox">
-								<input id="{nodeType.name}" type="checkbox" name="moduleArguments[nodeTypeName][]" value="{nodeType.name}"><span></span>
-							</label>
+						<td class="neos-priority1">
+							<i class="{nodeType.icon} neos-pull-left"></i>
 						</td>
 						<td class="nodetype-label neos-priority1">
-							{nodeType.label}
+							{nodeType.label}<f:if condition="{nodeType.abstract}"><span class="neos-badge neos-badge-success">Abstract</span></f:if>
 						</td>
 						<td class="nodetype-name neos-priority1">
 							{nodeType.name}
 						</td>
 						<td class="nodetype-group neos-priority1">
-							{nodeType.ui.group}
+							{nodeType.group}
 						</td>
 						<td class="nodetype-label neos-priority1">
-							<f:if condition="{nodeType.ui.inlineEditable}">
+							<f:if condition="{nodeType.inlineEditable}">
 								<i class="icon-check icon-white"></i>
 							</f:if>
 						</td>
 						<td class="neos-action neos-priority1">
-							<f:link.action action="show" arguments="{nodeTypeName: nodeType.name}" class="neos-button neos-button-primary" title="{nodeTypeName}">
+							<f:link.action action="show" arguments="{nodeTypeName: nodeType.name}" class="neos-button neos-button-primary neos-pull-right" title="{nodeTypeName}">
 								<i class="icon-info-sign icon-white"></i>
 							</f:link.action>
 						</td>
