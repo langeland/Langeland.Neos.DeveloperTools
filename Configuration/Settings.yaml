@@ -1,7 +1,7 @@
 TYPO3:
   Neos:
     modules:
-      developerTools:
+      developertools:
         label: 'Developer Tools module'
         controller: '\Langeland\Neos\DeveloperTools\Controller\DeveloperToolsController'
         description: "This is the description for the awesome Developer Tools backend module."
@@ -14,7 +14,7 @@ TYPO3:
             description: "This is the description for the awesome DeveloperTools backend module."
             #icon: 'resource://Langeland.Neos.DeveloperTools/Public/Images/simpleplugin_icon-24.png'
             icon: 'icon-gear'
-            resource: 'Langeland_Neos_DeveloperTools_Backend_Module_Configuration'
+            resource: 'Langeland.NeosDeveloperTools:Backend.Module.Configuration'
             additionalResources:
               javaScripts:
                 - 'resource://Langeland.Neos.DeveloperTools/Public/JavaScripts/SyntaxHighlighter/shCore.js'
@@ -31,7 +31,7 @@ TYPO3:
             description: "This is the description for the awesome Developer Tools backend module."
             #icon: 'resource://Langeland.Neos.DeveloperTools/Public/Images/simpleplugin_icon-24.png'
             icon: 'icon-gear'
-            resource: 'Langeland_Neos_DeveloperTools_Backend_Module_NodeType'
+            resource: 'Langeland.NeosDeveloperTools:Backend.Module.NodeType'
             additionalResources:
               javaScripts:
                 - 'resource://Langeland.Neos.DeveloperTools/Public/JavaScripts/FancyTree/jquery-ui.custom.js'
@@ -40,57 +40,3 @@ TYPO3:
               styleSheets:
                 - 'resource://Langeland.Neos.DeveloperTools/Public/StyleSheets/FancyTree/skin-neos/ui.fancytree.css'
                 - 'resource://Langeland.Neos.DeveloperTools/Public/StyleSheets/NodeTypesModule.css'
-
-
-
-XTYPO3:
-  Neos:
-    modules:
-      developerTools:
-        label: 'Developer Tools module'
-        controller: '\Langeland\Neos\DeveloperTools\Controller\DeveloperToolsController'
-        description: "This is the description for the awesome Developer Tools backend module."
-        icon: 'icon-gear'
-        resource: 'Langeland_Neos_DeveloperTools_Backend_Module_Developertools'
-        submodules:
-          configuration:
-            label: 'Configuration'
-            controller: '\Langeland\Neos\DeveloperTools\Controller\ConfigurationController'
-            description: "This is the description for the awesome DeveloperTools backend module."
-            #icon: 'resource://Langeland.Neos.DeveloperTools/Public/Images/simpleplugin_icon-24.png'
-            icon: 'icon-gear'
-            resource: 'Langeland_Neos_DeveloperTools_Backend_Module_Configuration'
-            additionalResources:
-              javaScripts:
-                - 'resource://Langeland.Neos.DeveloperTools/Public/JavaScripts/SyntaxHighlighter/shCore.js'
-                - 'resource://Langeland.Neos.DeveloperTools/Public/JavaScripts/SyntaxHighlighter/shBrushJScript.js'
-                - 'resource://Langeland.Neos.DeveloperTools/Public/JavaScripts/SyntaxHighlighter/shBrushYaml.js'
-                - 'resource://Langeland.Neos.DeveloperTools/Public/JavaScripts/ConfigurationModule.js'
-              styleSheets:
-                - 'resource://Langeland.Neos.DeveloperTools/Public/StyleSheets/SyntaxHighlighter/shCoreDefault.css'
-                - 'resource://Langeland.Neos.DeveloperTools/Public/StyleSheets/SyntaxHighlighter/shThemeNeos.css'
-                - 'resource://Langeland.Neos.DeveloperTools/Public/StyleSheets/ConfigurationModule.css'
-
-          nodeType:
-            label: 'NodeTypes'
-            controller: '\Langeland\Neos\DeveloperTools\Controller\NodeTypeController'
-            description: "This is the description for the awesome Developer Tools backend module."
-            #icon: 'resource://Langeland.Neos.DeveloperTools/Public/Images/simpleplugin_icon-24.png'
-            icon: 'icon-gear'
-            resource: 'Langeland_Neos_DeveloperTools_Backend_Module_NodeType'
-            additionalResources:
-              javaScripts:
-                - 'resource://Langeland.Neos.DeveloperTools/Public/JavaScripts/FancyTree/jquery-ui.custom.js'
-                - 'resource://Langeland.Neos.DeveloperTools/Public/JavaScripts/FancyTree/jquery.fancytree.js'
-                - 'resource://Langeland.Neos.DeveloperTools/Public/JavaScripts/NodeTypesModule.js'
-              styleSheets:
-                - 'resource://Langeland.Neos.DeveloperTools/Public/StyleSheets/FancyTree/skin-neos/ui.fancytree.css'
-                - 'resource://Langeland.Neos.DeveloperTools/Public/StyleSheets/NodeTypesModule.css'
-
-          style:
-            label: 'Backend Module Styling'
-            controller: '\Langeland\Neos\DeveloperTools\Controller\StyleController'
-            description: "This is the description for the awesome Developer Tools backend module."
-            #icon: 'resource://Langeland.Neos.DeveloperTools/Public/Images/simpleplugin_icon-24.png'
-            icon: 'icon-gear'
-            resource: 'Langeland_Neos_DeveloperTools_Backend_Module_Style'

@@ -2,17 +2,34 @@
 # Security policy for the TYPO3 Neos package                             #
 #                                                                        #
 
-resources:
-  methods:
-    Langeland_Neos_DeveloperTools_Backend_Module_DeveloperTools: 'method(Langeland\Neos\DeveloperTools\Controller\DeveloperToolsController->indexAction())'
-    Langeland_Neos_DeveloperTools_Backend_Module_Configuration: 'method(Langeland\Neos\DeveloperTools\Controller\ConfigurationController->indexAction())'
-    Langeland_Neos_DeveloperTools_Backend_Module_NodeType: 'method(Langeland\Neos\DeveloperTools\Controller\NodeTypeController->(index|show)Action())'
-    Langeland_Neos_DeveloperTools_Backend_Module_Style: 'method(Langeland\Neos\DeveloperTools\Controller\StyleController->indexAction())'
+#resources:
+#  methods:
+#    Langeland_Neos_DeveloperTools_Backend_Module_DeveloperTools: 'method(Langeland\Neos\DeveloperTools\Controller\DeveloperToolsController->indexAction())'
+#    Langeland_Neos_DeveloperTools_Backend_Module_Configuration: 'method(Langeland\Neos\DeveloperTools\Controller\ConfigurationController->indexAction())'
+#    Langeland_Neos_DeveloperTools_Backend_Module_NodeType: 'method(Langeland\Neos\DeveloperTools\Controller\NodeTypeController->(index|show)Action())'
+#    Langeland_Neos_DeveloperTools_Backend_Module_Style: 'method(Langeland\Neos\DeveloperTools\Controller\StyleController->indexAction())'
+#
+#acls:
+#  Everybody:
+#    methods:
+#      Langeland_Neos_DeveloperTools_Backend_Module_DeveloperTools: GRANT
+#      Langeland_Neos_DeveloperTools_Backend_Module_Configuration: GRANT
+#      Langeland_Neos_DeveloperTools_Backend_Module_NodeType: GRANT
+#      Langeland_Neos_DeveloperTools_Backend_Module_Style: GRANT
 
-acls:
-  Everybody:
-    methods:
-      Langeland_Neos_DeveloperTools_Backend_Module_DeveloperTools: GRANT
-      Langeland_Neos_DeveloperTools_Backend_Module_Configuration: GRANT
-      Langeland_Neos_DeveloperTools_Backend_Module_NodeType: GRANT
-      Langeland_Neos_DeveloperTools_Backend_Module_Style: GRANT
+roles:
+  'TYPO3.Neos:Administrator':
+    privileges:
+      -
+        privilegeTarget: 'Langeland.NeosDeveloperTools:Backend.Module.Configuration'
+        permission: GRANT
+      -
+        privilegeTarget: 'Langeland.NeosDeveloperTools:Backend.Module.NodeType'
+        permission: GRANT
+
+privilegeTargets:
+  TYPO3\Flow\Security\Authorization\Privilege\Method\MethodPrivilege:
+    'Langeland.NeosDeveloperTools:Backend.Module.Configuration':
+      matcher: method(Langeland\Neos\DeveloperTools\Controller\ConfigurationController->(index|show)Action())
+    'Langeland.NeosDeveloperTools:Backend.Module.NodeType':
+      matcher: method(Langeland\Neos\DeveloperTools\Controller\NodeTypeController->(index|show)Action())
